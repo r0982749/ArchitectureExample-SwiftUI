@@ -138,7 +138,9 @@ class MockAPIClient: APIClientProtocol {
 let testViewModel = UserListViewModel(apiClient: MockAPIClient())
 ```
 
-## Extension Keyword
+## Keywords
+
+### Extension Keyword
 
 ```swift
 struct User: Codable, Identifiable {
@@ -157,7 +159,7 @@ Rules:
 - Avoid overusing extensions
 - Prefer extensions for grouping related methods
 
-## Protocol keyword
+### Protocol keyword
 
 ```swift
 protocol Greetable {
