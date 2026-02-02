@@ -26,6 +26,46 @@ actor APIClient {
 
 Keyword actor is used for built in concurrency and thread safety. Actors ensure that only one task can access their mutable state at a time and requires the use of the `await` keyword to access it's methods or properties.
 
+#### Further decoupling
+
+```swift
+enum NetworkHelper {
+    static func fetchData<T: Decodable>(from url: URL) async throws -> T {
+        let (data, _) = try await URLSession.shared.data(from: url)
+        return try JSONDecoder().decode(T.self, from: data)
+    }
+}
+```
+
+```swift
+actor APIClient: APIClientProtocol {
+    func fetchUsers() async throws -> [User] {
+        let url = URL(string: "https://api.example.com/users")!
+        return try await NetworkHelper.fetchData(from: url)
+    }
+}
+```
+
+OR
+
+```swift
+extension URLSession {
+    func decode<T: Decodable>(_ type: T.Type, from url: URL) async throws -> T {
+        let (data, _) = try await data(from: url)
+        return try JSONDecoder().decode(T.self, from: data)
+    }
+}
+```
+
+```swift
+actor APIClient: APIClientProtocol {
+    func fetchUsers() async throws -> [User] {
+        let url = URL(string: "https://api.example.com/users")!
+        return try await URLSession.shared.decode([User].self, from: url)
+    }
+}
+```
+
 ### ViewModel layer
 
 ```swift
