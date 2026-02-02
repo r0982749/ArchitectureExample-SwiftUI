@@ -66,6 +66,59 @@ actor APIClient: APIClientProtocol {
 }
 ```
 
+These examples can then be updated to also use different HTTP methods to send requests to the API.
+
+```swift
+enum HTTPMethod: String { case GET, POST, PUT, DELETE }
+```
+
+```swift
+struct NetworkHelper {
+    static func request<T: Decodable>(
+        url: URL,
+        method: HTTPMethod = .GET,
+        headers: [String: String] = [:],
+        body: Data? = nil,
+        jwt: String? = nil
+    ) async throws -> T {
+        var request = URLRequest(url: url)
+        request.httpMethod = method.rawValue
+        if let body = body { request.httpBody = body }
+        if let jwt = jwt {
+            request.addValue("Bearer \(jwt)", forHTTPHeaderField: "Authorization")
+        }
+        headers.forEach { request.addValue($1, forHTTPHeaderField: $0) }
+        
+        let (data, _) = try await URLSession.shared.data(for: request)
+        return try JSONDecoder().decode(T.self, from: data)
+    }
+}
+```
+
+```swift
+extension URLSession {
+    func request<T: Decodable>(
+        _ type: T.Type,
+        url: URL,
+        method: HTTPMethod = .GET,
+        headers: [String: String] = [:],
+        body: Data? = nil,
+        jwt: String? = nil
+    ) async throws -> T {
+        var request = URLRequest(url: url)
+        request.httpMethod = method.rawValue
+        if let body = body { request.httpBody = body }
+        if let jwt = jwt {
+            request.addValue("Bearer \(jwt)", forHTTPHeaderField: "Authorization")
+        }
+        headers.forEach { request.addValue($1, forHTTPHeaderField: $0) }
+        
+        let (data, _) = try await data(for: request)
+        return try JSONDecoder().decode(T.self, from: data)
+    }
+}
+```
+
 ### ViewModel layer
 
 ```swift
