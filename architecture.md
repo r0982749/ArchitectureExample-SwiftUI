@@ -4,7 +4,7 @@
 
 ### Model layer
 
-```
+```swift
 struct User: Codable, Identifiable {
     let id: Int
     let name: String
@@ -28,7 +28,7 @@ Keyword actor is used for built in concurrency and thread safety. Actors ensure 
 
 ### ViewModel layer
 
-```
+```swift
 @Observable
 class UserListViewModel {
     private let apiClient = APIClient()
@@ -49,7 +49,7 @@ class UserListViewModel {
 
 ### View layer
 
-```
+```swift
 struct UserListView: View {
     @State var viewModel = UserListViewModel()
     
@@ -69,7 +69,7 @@ struct UserListView: View {
 
 ### Environment Injection
 
-```
+```swift
 struct UserListView: View {
     @Environment(UserListViewModel.self) var viewModel
 
@@ -81,9 +81,25 @@ UserListView()
     .environment(UserListViewModel(apiClient: APIClient()))
 ```
 
+### Service to ViewModel DI
+
+```swift
+protocol APIClientProtocol {
+    func fetchUsers() async throws -> [User]
+}
+```
+
+```swift
+actor APIClient: APIClientProtocol {
+    func fetchUsers() async throws -> [User] {
+        // ... implementation ...
+    }
+}
+```
+
 ## Extension Keyword
 
-```
+```swift
 struct User: Codable, Identifiable {
     // Core properties
 }
@@ -102,7 +118,7 @@ Rules:
 
 ## Protocol keyword
 
-```
+```swift
 protocol Greetable {
     var name: String { get }
     func greet() -> String
