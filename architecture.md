@@ -134,7 +134,7 @@ struct MultiScreenApp: App {
         }
     }
 }
-``
+```
 
 ### Service to ViewModel DI
 
