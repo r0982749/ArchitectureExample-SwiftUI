@@ -64,6 +64,20 @@ struct UserListView: View {
 }
 ```
 
+### Util layer
+
+```
+Utilities/
+├── Formatting/
+│   └── DateFormatting.swift
+├── Extensions/
+│   └── ...
+├── ColorPalette.swift
+```
+
+This layer can be used to store the formatters and extensions, basically anything usefull that can be reused.
+
+
 ## Dependency Injection
 
 
