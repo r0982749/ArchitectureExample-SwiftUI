@@ -227,3 +227,24 @@ struct User: Greetable {
 ```
 
 A protocol behaves like the mix between an "interface" and an "abstract class" in Java. It is like a contract that the implementing type has to follow.
+
+## Annotations
+
+### @State
+The "@State" annotation is used for local variables within a view, when the variable is changed the view updates.
+
+### @StateObject & @Published
+A variable with the "@StateObject" annotation updates the view when a property of the object that is annotated with "@Published" is changed.
+The class itself must be an "ObservableObject"
+
+```swift
+@MainActor
+final class AppCoordinator: ObservableObject {
+    @Published var name: String = "Tester"
+    
+    @ViewBuilder
+    func rootView() -> some View {
+        Text("Hello, \(name)!")
+    }
+}
+``
