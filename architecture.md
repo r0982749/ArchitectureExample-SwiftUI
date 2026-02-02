@@ -81,6 +81,8 @@ UserListView()
     .environment(UserListViewModel(apiClient: APIClient()))
 ```
 
+Use this method if the ViewModel is Global or Shared between multiple views.
+
 ### Service to ViewModel DI
 
 ```swift
@@ -95,6 +97,45 @@ actor APIClient: APIClientProtocol {
         // ... implementation ...
     }
 }
+```
+
+```swift
+@Observable
+class UserListViewModel {
+    private let apiClient: APIClientProtocol
+    var users = [User]()
+    var isLoading = false
+
+    init(apiClient: APIClientProtocol) {
+        self.apiClient = apiClient
+    }
+
+    func loadUsers() async {
+        isLoading = true
+        do {
+            users = try await apiClient.fetchUsers()
+        } catch {
+            // handle error
+        }
+        isLoading = false
+    }
+}
+```
+
+```swift
+@State var viewModel = UserListViewModel(apiClient: APIClient())
+```
+
+#### For testing purposes
+
+```swift
+class MockAPIClient: APIClientProtocol {
+    func fetchUsers() async throws -> [User] {
+        [User(id: 1, name: "Test User", email: "test@example.com")]
+    }
+}
+
+let testViewModel = UserListViewModel(apiClient: MockAPIClient())
 ```
 
 ## Extension Keyword
