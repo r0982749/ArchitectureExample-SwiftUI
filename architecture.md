@@ -248,3 +248,7 @@ final class AppCoordinator: ObservableObject {
     }
 }
 ```
+
+```swift
+@StateObject private var coordinator = AppCoordinator()
+```    
