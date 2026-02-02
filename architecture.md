@@ -114,4 +114,4 @@ struct User: Greetable {
 }
 ```
 
-A protocol is comparable to an "abstract class" in Java. It is like a contract that the implementing type has to follow.
+A protocol behaves like the mix between an "interface" and an "abstract class" in Java. It is like a contract that the implementing type has to follow.
