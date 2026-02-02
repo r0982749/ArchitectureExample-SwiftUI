@@ -67,3 +67,17 @@ struct UserListView: View {
 ## Dependency Injection
 
 
+### Environment Injection
+
+```
+struct UserListView: View {
+    @Environment(UserListViewModel.self) var viewModel
+
+    // ...
+}
+
+// In your App or parent:
+UserListView()
+    .environment(UserListViewModel(apiClient: APIClient()))
+```
+
