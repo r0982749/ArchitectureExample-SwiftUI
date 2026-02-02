@@ -123,6 +123,19 @@ final class AppCoordinator: ObservableObject {
 
 The AppCoordinator is basically an improved ContentView, this class can be used to direct navigation within the app.
 
+```swift
+@main
+struct MultiScreenApp: App {
+    @StateObject private var coordinator = AppCoordinator()
+
+    var body: some Scene {
+        WindowGroup {
+            coordinator.rootView()
+        }
+    }
+}
+``
+
 ### Service to ViewModel DI
 
 ```swift
