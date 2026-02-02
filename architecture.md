@@ -81,3 +81,37 @@ UserListView()
     .environment(UserListViewModel(apiClient: APIClient()))
 ```
 
+## Extension Keyword
+
+```
+struct User: Codable, Identifiable {
+    // Core properties
+}
+
+extension User: CustomStringConvertible {
+    var description: String { "\(name) (\(email))" }
+}
+```
+
+Extension can be used to add extra logic to an existing struct or class. It can be used to improve organisation and readability ("clean code"). 
+
+Rules:
+- Don't add stored properties
+- Avoid overusing extensions
+- Prefer extensions for grouping related methods
+
+## Protocol keyword
+
+```
+protocol Greetable {
+    var name: String { get }
+    func greet() -> String
+}
+
+struct User: Greetable {
+    let name: String
+    func greet() -> String { "Hello, \(name)!" }
+}
+```
+
+A protocol is comparable to an "abstract class" in Java. It is like a contract that the implementing type has to follow.
