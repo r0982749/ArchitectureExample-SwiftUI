@@ -14,7 +14,7 @@ struct User: Codable, Identifiable {
 
 ### Service layer (Receive data from API)
 
-```
+```swift
 actor APIClient {
     func fetchUsers() async throws -> [User] {
         let url = URL(string: "https://api.example.com/users")!
@@ -23,6 +23,8 @@ actor APIClient {
     }
 }
 ```
+
+Keyword actor is used for built in concurrency and thread safety. Actors ensure that only one task can access their mutable state at a time and requires the use of the `await` keyword to access it's methods or properties.
 
 ### ViewModel layer
 
@@ -61,3 +63,7 @@ struct UserListView: View {
     }
 }
 ```
+
+## Dependency Injection
+
+
