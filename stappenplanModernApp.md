@@ -100,7 +100,7 @@ Op deze manier kunnen we ervoor zorgen dat deze util klasse enkel gebruikt wordt
 
     - Impact:
 
-        - Aanpassen van de services die voorheen de WebServiceUtils klasse gebruikte
+        - Aanpassen van de services die voorheen de WebServiceUtils klasse gebruikte (Als we ervoor kiezen om ook de namen van methodes aan te passen)
     
     - Voordelen:
 
