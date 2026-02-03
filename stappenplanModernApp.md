@@ -1,4 +1,4 @@
-# Stappenplan
+# Stand van zaken
 
 ## Data laag
 
@@ -36,9 +36,9 @@ actor TransportService: TransportServiceProtocol {
 }
 ```
 
-Om het beste resultaat te bekomen zullen ook de Util klassen aangepast moeten worden. Zodat ze ook voldoen aan de modern app principes, maar dit is nog niet noodzakelijk en kan achteraf gebeuren.
+Om het beste resultaat te bekomen, zullen ook de Util klassen aangepast moeten worden. Zodat ze ook voldoen aan de modern app principes, maar dit is nog niet noodzakelijk en kan achteraf gebeuren.
 
-Door deze aanpassing door te voeren moeten we waarschijnlijk de datatypes aanpassen van de Services in de ViewModels, maar door het te behouden van de functionaliteit moeten er verder geen aanpassingen gemaakt worden aan de UI laag.
+Door deze aanpassing door te voeren, moeten we waarschijnlijk de datatypes aanpassen van de Services in de ViewModels, maar door het behouden van de functionaliteit moeten er verder geen aanpassingen gemaakt worden aan de UI laag.
 
 Met deze aanpassing bestaat ook de mogelijkheid om "mock" implementaties aan te maken voor de services (of offline first varianten). Dit is mogelijk gemaakt door het gebruiken van het "protocol" keyword.
 
@@ -46,7 +46,9 @@ Met deze aanpassing bestaat ook de mogelijkheid om "mock" implementaties aan te 
 
 #### "WebServiceUtils" -> NetworkRequester
 
-De "WebServiceUtils" klasse kan verder generiek gemaakt worden, we kunnen ervoor zorgen dat duplicate code vermijden wordt en de leesbaarheid van de klasse stijgt.
+De "WebServiceUtils" klasse kan verder generiek gemaakt worden. We kunnen ervoor zorgen dat duplicate code vermeden wordt en de leesbaarheid van de klasse stijgt.
+
+Bij het uitvoeren van deze update zal ook de Service laag aangepast moeten worden om de nieuwe manier van network request te volgen. Het impact van deze verandering zal dus miniem zijn als de originele werking van de "WebServiceUtils" klasse bewaard wordt.
 
 ```swift
 enum HTTPMethod: String { case GET, POST, PUT, DELETE }
@@ -82,3 +84,5 @@ Op deze manier kunnen we ervoor zorgen dat deze util klasse enkel gebruikt wordt
 ### View
 
 ### ViewModel
+
+# Stappenplan
