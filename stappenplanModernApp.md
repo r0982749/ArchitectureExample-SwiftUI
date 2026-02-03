@@ -13,7 +13,6 @@ class TransportDAO  {
         do {
             let result = try await WebServiceUtils().webServiceGet(url: "/api/meansoftransportation")
             return try JSONDecoder().decode([Transport].self, from: result!)
-            
         } catch {
             print("Error getting transports: \(error)")
             return nil
@@ -86,3 +85,23 @@ Op deze manier kunnen we ervoor zorgen dat deze util klasse enkel gebruikt wordt
 ### ViewModel
 
 # Stappenplan
+
+1. "DAOs" omvormen naar Services
+
+    - Impact:
+
+        - Aanpassen referenties naar de klasse in UI laag
+
+    - Voordelen:
+
+        - Door gebruik te maken van protocol'en wordt de UI laag gescheiden van de data laag, waardoor we bijvoorbeeld gebruik kunnen maken van offline first services.
+
+2. "WebServiceUtils" omvormen
+
+    - Impact:
+
+        - Aanpassen van de services die voorheen de WebServiceUtils klasse gebruikte
+    
+    - Voordelen:
+
+        - De web requests worden generiek gemaakt
