@@ -27,7 +27,11 @@ protocol TransportServiceProtocol {
     func fetchTransports() async throws -> [Transport]?
 }
 
-
+actor TransportService: TransportServiceProtocol {
+    func fetchTransports() async throws -> [Transport]? {
+        // implementation
+    }
+}
 ```
 
 
