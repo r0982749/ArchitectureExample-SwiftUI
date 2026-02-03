@@ -36,7 +36,7 @@ actor TransportService: TransportServiceProtocol {
 }
 ```
 
-Om dit resultaat te bekomen zullen ook de Util klassen aangepast moeten worden. Zodat ze ook voldoen aan de modern app principes.
+Om het beste resultaat te bekomen zullen ook de Util klassen aangepast moeten worden. Zodat ze ook voldoen aan de modern app principes, maar dit is nog niet noodzakelijk en kan achteraf gebeuren.
 
 Door deze aanpassing door te voeren moeten we waarschijnlijk de datatypes aanpassen van de Services in de ViewModels, maar door het te behouden van de functionaliteit moeten er verder geen aanpassingen gemaakt worden aan de UI laag.
 
@@ -46,7 +46,36 @@ Met deze aanpassing bestaat ook de mogelijkheid om "mock" implementaties aan te 
 
 #### "WebServiceUtils" -> NetworkRequester
 
-De "WebServiceUtils" klasse kan verder generiek gemaakt worden, we kunnen ervoor zorgen dat 
+De "WebServiceUtils" klasse kan verder generiek gemaakt worden, we kunnen ervoor zorgen dat duplicate code vermijden wordt en de leesbaarheid van de klasse stijgt.
+
+```swift
+enum HTTPMethod: String { case GET, POST, PUT, DELETE }
+
+enum NetworkRequester {
+    static func request<T: Decodable>(
+        url: URL,
+        method: HTTPMethod = .GET,
+        headers: [String: String] = [:],
+        body: Data? = nil,
+        jwt: String? = nil
+    ) async throws -> T {
+        var request = URLRequest(url: url)
+        request.httpMethod = method.rawValue
+        if let body = body { request.httpBody = body }
+        if let jwt = jwt {
+            request.addValue("Bearer \(jwt)", forHTTPHeaderField: "Authorization")
+        }
+        headers.forEach { request.addValue($1, forHTTPHeaderField: $0) }
+        
+        let (data, _) = try await URLSession.shared.data(for: request)
+        return try JSONDecoder().decode(T.self, from: data)
+    }
+}
+```
+
+Dit is een voorbeeld van een generieke "request" methode die alle HTTP request kan versturen. De "NetworkRequester" is een enum doordat dit ervoor zorgt dat er geen variabelen kunnen aangemaakt worden van het type NetworkRequester.
+
+Op deze manier kunnen we ervoor zorgen dat deze util klasse enkel gebruikt wordt om data op te halen.
 
 ## UI laag
 
