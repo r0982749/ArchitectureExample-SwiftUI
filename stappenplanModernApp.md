@@ -104,4 +104,4 @@ Op deze manier kunnen we ervoor zorgen dat deze util klasse enkel gebruikt wordt
     
     - Voordelen:
 
-        - De web requests worden generiek gemaakt
+        - De web requests worden generiek gemaakt waardoor leesbaarheid stijgt en duplicate code vermeden wordt.
