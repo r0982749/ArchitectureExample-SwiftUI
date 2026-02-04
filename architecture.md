@@ -337,11 +337,28 @@ A protocol behaves like the mix between an "interface" and an "abstract class" i
 
 ## Annotations
 
-### @State
-The "@State" annotation is used for local variables within a view, when the variable is changed the view updates.
+### @State (modern way to use ViewModels in Views)
+The "@State" annotation is used for local variables within a view, when the variable is changed the view updates. The ViewModel is destoyed when leaving the View, theoretically saving memory.
 
-### @StateObject & @Published
-A variable with the "@StateObject" annotation updates the view when a property of the object that is annotated with "@Published" is changed.
+```swift
+@MainActor
+@Observable
+final class AppCoordinator {
+    var name: String = "Tester"
+    
+    @ViewBuilder
+    func rootView() -> some View {
+        Text("Hello, \(name)!")
+    }
+}
+```
+
+```swift
+@State private var coordinator = AppCoordinator()
+```
+
+### @StateObject & @Published (Old pattern, do not use)
+A variable with the "@StateObject" annotation updates the view when a property of the object that is annotated with "@Published" is changed. The ViewModel is not destroyed and recreated everytime the View is changed.
 The class itself must be an "ObservableObject"
 
 ```swift
