@@ -212,7 +212,7 @@ Op deze manier kan je een specifieke ViewModel ophalen uit het environment op ba
 
 ![Dependency chart](https://i.ibb.co/HTgJDyjv/Dependency-chart.png)
 
-![Naming convention chart](https://i.ibb.co/hJYZ4jPG/Naming-convention-chart.png)
+![Naming convention chart](https://i.ibb.co/ZRNgVmhS/i-OS-Architecture.png)
 
 ## UI laag
 
@@ -300,7 +300,7 @@ actor SomeService: SomeServiceProtocol {
 ### Model
 
 ```swift
-struct User {
+struct User: Decodable {
     let firstname: String
     let lastname: String
 }
@@ -308,7 +308,29 @@ struct User {
 
 ### Mapper
 
-
+```swift
+struct UserMapper {
+    func getDTOFromJson(_ json: String) -> UserDTO? {
+        do {
+            let user = try getUserFromJson(json)
+            
+            return map(from: user)
+        }
+        catch {
+            print("Error parsing JSON: \(error)")
+            return nil
+        }
+    }
+    
+    func map(from user: User) -> UserDTO {
+        return UserDTO(firstname: user.firstname, lastname: user.lastname)
+    }
+    
+    private func getUserFromJson(_ json: String) throws -> User {
+        return try JSONDecoder().decode(User.self, from: Data(json.utf8))
+    }
+}
+```
 
 ### DTO
 
