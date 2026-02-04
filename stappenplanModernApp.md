@@ -212,7 +212,7 @@ Op deze manier kan je een specifieke ViewModel ophalen uit het environment op ba
 
 ![Dependency chart](https://i.ibb.co/HTgJDyjv/Dependency-chart.png)
 
-![Naming convention chart](https://i.ibb.co/ZRNgVmhS/i-OS-Architecture.png)
+![Naming convention chart](https://i.ibb.co/0yFDBdp8/i-OS-Architecture.png)
 
 ## UI laag
 
