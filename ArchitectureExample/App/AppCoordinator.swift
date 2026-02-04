@@ -6,11 +6,11 @@
 //
 
 import SwiftUI
-internal import Combine
 
 @MainActor
-final class AppCoordinator: ObservableObject {
-    @Published var name: String = "Tester"
+@Observable
+final class AppCoordinator {
+    var name: String = "Tester"
     
     @ViewBuilder
     func rootView() -> some View {

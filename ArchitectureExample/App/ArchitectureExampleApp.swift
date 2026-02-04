@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct ArchitectureExampleApp: App {
-    @StateObject private var coordinator = AppCoordinator()
+    @State private var coordinator = AppCoordinator()
     
     var body: some Scene {
         WindowGroup {
