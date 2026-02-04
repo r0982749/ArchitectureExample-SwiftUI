@@ -269,7 +269,28 @@ private extension SomeView {
 }
 ```
 
+### Model
+
+```swift
+struct UserViewState {
+    let fullname: String
+
+    init(user: User) {
+        self.fullname = "\(user.firstname) \(user.lastname)"
+    }
+}
+```
+
 ## Data laag
+
+### Model
+
+```swift
+struct User {
+    let firstname: String
+    let lastnaem: String
+}
+```
 
 ### Services
 
