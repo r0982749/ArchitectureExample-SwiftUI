@@ -202,6 +202,18 @@ Op deze manier kan je een specifieke ViewModel ophalen uit het environment op ba
 
 # 3. Model structuur
 
+## Architectuur
+
+### High level architectuur
+
+![High level architectuur](https://i.ibb.co/cXpHt9T7/High-level.png)
+
+### Dependency chart
+
+![Dependency chart](https://i.ibb.co/HTgJDyjv/Dependency-chart.png)
+
+![Naming convention chart](https://i.ibb.co/hJYZ4jPG/Naming-convention-chart.png)
+
 ## UI laag
 
 ### ViewModel
