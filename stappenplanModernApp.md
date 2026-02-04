@@ -181,7 +181,7 @@ Op deze manier kan je een specifieke ViewModel ophalen uit het environment op ba
 
     - Impact:
 
-        - Aanpassen referenties naar de klasse in UI laag
+        - Aanpassen referenties naar de klasse in UI laag.
 
     - Voordelen:
 
@@ -191,7 +191,7 @@ Op deze manier kan je een specifieke ViewModel ophalen uit het environment op ba
 
     - Impact:
 
-        - Aanpassen van de services die voorheen de WebServiceUtils klasse gebruikte (Als we ervoor kiezen om ook de namen van methodes aan te passen)
+        - Aanpassen van de services die voorheen de WebServiceUtils klasse gebruikte (Als we ervoor kiezen om ook de namen van methodes aan te passen).
     
     - Voordelen:
 
@@ -199,9 +199,19 @@ Op deze manier kan je een specifieke ViewModel ophalen uit het environment op ba
 
 3. "UserDefaultUtils" omvormen
 
+    - Impact:
+
+        - Aanpassen van dit util bestand heeft niet direct een impact als de originele functie namen behouden worden (en functionaliteit).
+
+    - Voordelen:
+
+        - Zorgt voor consistentie binnen de utils folder.
+
 4. Models corrigeren (data laag aanmaken)
 
 5. Mappers en DTO's aanmaken
+
+6. UI omvormen (behalve kalender)
 
 ---
 
