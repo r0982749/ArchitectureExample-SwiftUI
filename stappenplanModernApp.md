@@ -281,14 +281,16 @@ private extension SomeView {
 }
 ```
 
-### Model
+## Service laag
 
 ```swift
-struct UserViewState {
-    let fullname: String
+protocol SomeServiceProtocol {
+    func fetchSomething() async throws -> [String]?
+}
 
-    init(user: User) {
-        self.fullname = "\(user.firstname) \(user.lastname)"
+actor SomeService: SomeServiceProtocol {
+    func fetchSomething() async throws -> [String]? {
+        //...
     }
 }
 ```
@@ -304,19 +306,14 @@ struct User {
 }
 ```
 
-### Services
+### Mapper
 
-```swift
-protocol SomeServiceProtocol {
-    func fetchSomething() async throws -> [String]?
-}
 
-actor SomeService: SomeServiceProtocol {
-    func fetchSomething() async throws -> [String]? {
-        //...
-    }
-}
-```
+### DTO
+
+
+
+## Utils
 
 #### Netwerkrequests in util laag
 
