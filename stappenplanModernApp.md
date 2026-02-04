@@ -197,6 +197,11 @@ Op deze manier kan je een specifieke ViewModel ophalen uit het environment op ba
 
         - De web requests worden generiek gemaakt waardoor leesbaarheid stijgt en duplicate code vermeden wordt.
 
+3. "UserDefaultUtils" omvormen
+
+4. Models corrigeren (data laag aanmaken)
+
+5. Mappers en DTO's aanmaken
 
 ---
 
@@ -285,11 +290,17 @@ private extension SomeView {
 
 ## Service laag
 
+### Interface
+
 ```swift
 protocol SomeServiceProtocol {
     func fetchSomething() async throws -> [String]?
 }
+```
 
+### Implementatie
+
+```swift
 actor SomeService: SomeServiceProtocol {
     func fetchSomething() async throws -> [String]? {
         //...
