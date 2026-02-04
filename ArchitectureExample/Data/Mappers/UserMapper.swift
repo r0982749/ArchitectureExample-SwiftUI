@@ -10,11 +10,12 @@ import Foundation
 struct UserMapper {
     func getDTOFromJson(_ json: String) -> UserDTO? {
         do {
-            var user = try getUserFromJson(json)
+            let user = try getUserFromJson(json)
             
             return map(from: user)
         }
         catch {
+            print("Error parsing JSON: \(error)")
             return nil
         }
     }

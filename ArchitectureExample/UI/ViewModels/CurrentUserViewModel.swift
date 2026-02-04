@@ -9,5 +9,10 @@ import Foundation
 
 @Observable
 class CurrentUserViewModel {
-    var name: String = "Tester"
+    var user: UserDTO? = nil
+    
+    init() {
+        // To be replaced by a call to the service
+        self.user = UserMapper().getDTOFromJson("{ \"firstname\": \"Testing\", \"lastname\": \"Tester\" }")
+    }
 }
