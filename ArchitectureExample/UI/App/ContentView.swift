@@ -11,6 +11,6 @@ struct ContentView: View {
     @Environment(CurrentUserViewModel.self) var currentUserViewModel
     
     var body: some View {
-        Text("Hello, \(currentUserViewModel.user?.firstname ?? "Anonymous")")
+        Text("Hello, \(currentUserViewModel.user?.getFullname() ?? "Anonymous")")
     }
 }
