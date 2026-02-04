@@ -302,20 +302,29 @@ actor SomeService: SomeServiceProtocol {
 ```swift
 struct User {
     let firstname: String
-    let lastnaem: String
+    let lastname: String
 }
 ```
 
 ### Mapper
 
 
+
 ### DTO
 
+```swift
+struct UserDTO {
+    let firstname: String
+    let lastname: String
+
+    func getFullname() { ... }
+}
+```
 
 
 ## Utils
 
-#### Netwerkrequests in util laag
+### Netwerkrequests in util laag
 
 ```swift
 enum HTTPMethod: String { case GET, POST, PUT, DELETE }
