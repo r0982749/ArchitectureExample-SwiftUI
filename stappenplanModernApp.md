@@ -123,7 +123,7 @@ Hierna kunnen we in de View de "@State" annotatie om de ViewModel te kunnen gebr
 ```swift
 @Observable
 class SomeViewModel {
-    @Published var name: String = "John"
+    var name: String = "John"
 }
 
 struct SomeView: View {
