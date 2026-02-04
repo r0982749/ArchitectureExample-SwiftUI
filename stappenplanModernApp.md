@@ -30,7 +30,7 @@ protocol TransportServiceProtocol {
 
 actor TransportService: TransportServiceProtocol {
     func fetchTransports() async throws -> [Transport]? {
-        // implementation
+        //...
     }
 }
 ```
@@ -270,3 +270,42 @@ private extension SomeView {
 ```
 
 ## Services
+
+```swift
+protocol SomeServiceProtocol {
+    func fetchSomething() async throws -> [String]?
+}
+
+actor SomeService: SomeServiceProtocol {
+    func fetchSomething() async throws -> [String]? {
+        //...
+    }
+}
+```
+
+### Utils voor netwerkrequests
+
+```swift
+enum HTTPMethod: String { case GET, POST, PUT, DELETE }
+
+enum NetworkRequester {
+    static func request<T: Decodable>(
+        url: URL,
+        method: HTTPMethod = .GET,
+        headers: [String: String] = [:],
+        body: Data? = nil,
+        jwt: String? = nil
+    ) async throws -> T {
+        var request = URLRequest(url: url)
+        request.httpMethod = method.rawValue
+        if let body = body { request.httpBody = body }
+        if let jwt = jwt {
+            request.addValue("Bearer \(jwt)", forHTTPHeaderField: "Authorization")
+        }
+        headers.forEach { request.addValue($1, forHTTPHeaderField: $0) }
+        
+        let (data, _) = try await URLSession.shared.data(for: request)
+        return try JSONDecoder().decode(T.self, from: data)
+    }
+}
+```
