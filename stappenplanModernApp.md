@@ -105,9 +105,41 @@ struct SomeView: View {
 
 Voor gedeelde ViewModels, voor bijvoorbeeld de huidige gebruiker op te vragen, kunnen we het environment gebruiken.
 
+Het is aangeraden om de gedeelde ViewModels zo "hoog" mogelijk toe te voegen aan het environment, bijvoorbeeld in de "@main" app struct.
 
+```swift
+@main
+struct SomeApp: App {
+    @State private var someViewModel = SomeViewModel()
+    
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+                .environment(someViewModel)
+        }
+    }
+}
+```
 
-!! TODO: Environment voorbeeld toevoegen
+Dit laat toe om dan in de View de ViewModel op te halen uit het environment in plaats van ze door te geven doorheen onze app. Het is aangeraden om "ContentView" te gebruiken om de entry point van de app te beperken in complexiteit ("@main" struct), en dus al de Views pas op te roepen in de "ContentView" struct.
+
+```swift
+struct ContentView: View {
+    var body: some View {
+        SomeView()
+    }
+}
+
+struct SomeView: View {
+    @Environment(SomeViewModel.self) var someViewModel
+
+    var body: some View {
+        //...
+    }
+}
+```
+
+Op deze manier kan je een specifieke ViewModel ophalen uit het environment op basis van zijn type (in dit geval "SomeViewModel").
 
 # Stappenplan
 
