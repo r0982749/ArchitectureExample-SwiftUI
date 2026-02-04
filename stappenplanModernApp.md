@@ -84,17 +84,18 @@ Op deze manier kunnen we ervoor zorgen dat deze util klasse enkel gebruikt wordt
 
 ### ViewModel
 
-Om de View te kunnen sturen met de ViewModel kunnen we gebruik maken van het "ObservableObject" protocol. Hierdoor kunnen we "@Published" properties gebruiken die de View updaten als de variabele veranderd.
+Om de View te kunnen sturen met de ViewModel kunnen we gebruik maken van een "@Observable" klasse. Door de klasse observable te maken zorgen we ervoor dat de View wordt geupdate als de ViewModel wijzigd.
 
-Hierna kunnen we in de View de "@StateObject" annotatie om de ViewModel te kunnen gebruiken.
+Hierna kunnen we in de View de "@State" annotatie om de ViewModel te kunnen gebruiken.
 
 ```swift
-class SomeViewModel: ObservableObject {
+@Observable
+class SomeViewModel {
     @Published var name: String = "John"
 }
 
 struct SomeView: View {
-    @StateObject private var someViewModel: SomeViewModel
+    @State private var someViewModel = SomeViewModel()
 
     var body: some View {
         //...
@@ -103,6 +104,8 @@ struct SomeView: View {
 ```
 
 Voor gedeelde ViewModels, voor bijvoorbeeld de huidige gebruiker op te vragen, kunnen we het environment gebruiken.
+
+
 
 !! TODO: Environment voorbeeld toevoegen
 
