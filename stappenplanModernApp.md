@@ -1,4 +1,4 @@
-# Stand van zaken
+# 1. Stand van zaken
 
 ## Data laag
 
@@ -175,7 +175,7 @@ Op deze manier kan je een specifieke ViewModel ophalen uit het environment op ba
 
 ---
 
-# Stappenplan
+# 2. Stappenplan
 
 1. "DAOs" omvormen naar Services
 
@@ -200,7 +200,7 @@ Op deze manier kan je een specifieke ViewModel ophalen uit het environment op ba
 
 ---
 
-# Model structuur
+# 3. Model structuur
 
 ## UI
 
