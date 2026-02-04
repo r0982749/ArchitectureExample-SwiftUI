@@ -283,7 +283,7 @@ actor SomeService: SomeServiceProtocol {
 }
 ```
 
-### Utils voor netwerkrequests
+### Netwerkrequests in util laag
 
 ```swift
 enum HTTPMethod: String { case GET, POST, PUT, DELETE }
