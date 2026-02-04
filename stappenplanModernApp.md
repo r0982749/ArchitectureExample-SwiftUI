@@ -82,6 +82,38 @@ Op deze manier kunnen we ervoor zorgen dat deze util klasse enkel gebruikt wordt
 
 ### View
 
+```swift
+struct SomeView: View {
+    @State private var someViewModel = SomeViewModel()
+
+    private var calculatedField: Int { ... }
+
+    private func doSomething() { ... }
+
+    var body: some View {
+        //...
+    }
+}
+```
+
+Het is aangeraden om berekende velden en functies te scheiden van de View met behulp van een extension. Hierdoor wordt de view leesbaarder en het zorgt ervoor dat de UI en code gegroepeerd wordt.
+
+```swift
+struct SomeView: View {
+    @State private var someViewModel = SomeViewModel()
+
+    var body: some View {
+        //...
+    }
+}
+
+private extension SomeView {
+    var calculatedField: Int { ... }
+
+    func doSomething() { ... }
+}
+```
+
 ### ViewModel
 
 Om de View te kunnen sturen met de ViewModel kunnen we gebruik maken van een "@Observable" klasse. Door de klasse observable te maken zorgen we ervoor dat de View wordt geupdate als de ViewModel wijzigd.
