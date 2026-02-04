@@ -9,11 +9,9 @@ import SwiftUI
 
 @main
 struct ArchitectureExampleApp: App {
-    @State private var coordinator = AppCoordinator()
-    
     var body: some Scene {
         WindowGroup {
-            coordinator.rootView()
+            ContentView()
         }
     }
 }

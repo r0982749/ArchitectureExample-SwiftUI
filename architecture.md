@@ -190,59 +190,6 @@ UserListView()
 
 Use this method if the ViewModel is Global or Shared between multiple views.
 
-### AppCoordinator
-
-```swift
-@MainActor
-final class AppCoordinator: ObservableObject {
-    // Shared services
-    let apiClient: APIClientProtocol
-
-    @Published var selectedUserID: Int? = nil
-
-    init(apiClient: APIClientProtocol = APIClient()) {
-        self.apiClient = apiClient
-    }
-
-    @ViewBuilder
-    func rootView() -> some View {
-        NavigationStack {
-            UserListView(
-                viewModel: UserListViewModel(apiClient: apiClient),
-                showUserDetail: { [weak self] userID in
-                    self?.selectedUserID = userID
-                }
-            )
-            .navigationDestination(isPresented: Binding(
-                get: { self.selectedUserID != nil },
-                set: { if !$0 { self.selectedUserID = nil } }
-            )) {
-                if let userID = selectedUserID {
-                    UserDetailView(
-                        viewModel: UserDetailViewModel(userID: userID, apiClient: apiClient)
-                    )
-                }
-            }
-        }
-    }
-}
-```
-
-The AppCoordinator is basically an improved ContentView, this class can be used to direct navigation within the app.
-
-```swift
-@main
-struct MultiScreenApp: App {
-    @StateObject private var coordinator = AppCoordinator()
-
-    var body: some Scene {
-        WindowGroup {
-            coordinator.rootView()
-        }
-    }
-}
-```
-
 ### Service to ViewModel DI
 
 ```swift
