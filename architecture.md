@@ -123,36 +123,19 @@ extension URLSession {
 
 ```swift
 @Observable
-class UserListViewModel {
-    private let apiClient = APIClient()
-    var users = [User]()
-    var isLoading = false
-
-    func loadUsers() async {
-        isLoading = true
-        do {
-            users = try await apiClient.fetchUsers()
-        } catch {
-            // handle error
-        }
-        isLoading = false
-    }
+class SomeViewModel {
+    @Published var name: String = "John"
 }
 ```
 
 ### View layer
 
 ```swift
-struct UserListView: View {
-    @State var viewModel = UserListViewModel()
-    
+struct SomeView: View {
+    @State private var someViewModel = SomeViewModel()
+
     var body: some View {
-        List(viewModel.users) { user in
-            Text(user.name)
-        }
-        .task {
-            await viewModel.loadUsers()
-        }
+        //...
     }
 }
 ```
@@ -176,19 +159,35 @@ This layer can be used to store the formatters and extensions, basically anythin
 
 ### Environment Injection
 
-```swift
-struct UserListView: View {
-    @Environment(UserListViewModel.self) var viewModel
+Use this method if the ViewModel is Global or Shared between multiple views. It is advised to add ViewModel to the environment as high as possible in the app.
 
-    // ...
+```swift
+@main
+struct SomeApp: App {
+    @State private var someViewModel = SomeViewModel()
+    
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+                .environment(someViewModel)
+        }
+    }
 }
 
-// In your App or parent:
-UserListView()
-    .environment(UserListViewModel(apiClient: APIClient()))
-```
+struct ContentView: View {
+    var body: some View {
+        SomeView()
+    }
+}
 
-Use this method if the ViewModel is Global or Shared between multiple views.
+struct SomeView: View {
+    @Environment(SomeViewModel.self) var someViewModel
+
+    var body: some View {
+        //...
+    }
+}
+```
 
 ### Service to ViewModel DI
 
