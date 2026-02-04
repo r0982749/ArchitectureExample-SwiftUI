@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(CurrentUserViewModel.self) var currentUserViewModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("Hello, \(currentUserViewModel.name)")
     }
 }
