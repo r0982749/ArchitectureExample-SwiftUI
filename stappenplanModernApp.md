@@ -173,6 +173,8 @@ struct SomeView: View {
 
 Op deze manier kan je een specifieke ViewModel ophalen uit het environment op basis van zijn type (in dit geval "SomeViewModel").
 
+---
+
 # Stappenplan
 
 1. "DAOs" omvormen naar Services
@@ -194,3 +196,77 @@ Op deze manier kan je een specifieke ViewModel ophalen uit het environment op ba
     - Voordelen:
 
         - De web requests worden generiek gemaakt waardoor leesbaarheid stijgt en duplicate code vermeden wordt.
+
+
+---
+
+# Model structuur
+
+## UI
+
+### ViewModel
+
+```swift
+@Observable
+class SomeViewModel {
+    var name: String = "John"
+}
+
+struct SomeView: View {
+    @State private var someViewModel = SomeViewModel()
+
+    var body: some View {
+        //...
+    }
+}
+```
+
+#### Gedeelde ViewModel (Environment)
+
+```swift
+@main
+struct SomeApp: App {
+    @State private var someViewModel = SomeViewModel()
+    
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+                .environment(someViewModel)
+        }
+    }
+}
+
+struct ContentView: View {
+    var body: some View {
+        SomeView()
+    }
+}
+
+struct SomeView: View {
+    @Environment(SomeViewModel.self) var someViewModel
+
+    var body: some View {
+        //...
+    }
+}
+```
+
+### View
+
+```swift
+struct SomeView: View {
+    @State private var someViewModel = SomeViewModel()
+
+    var body: some View {
+        //...
+    }
+}
+
+private extension SomeView {
+    var calculatedField: Int { ... }
+
+    func doSomething() { ... }
+}
+```
+
+## Services
