@@ -202,7 +202,7 @@ Op deze manier kan je een specifieke ViewModel ophalen uit het environment op ba
 
 # 3. Model structuur
 
-## UI
+## UI laag
 
 ### ViewModel
 
@@ -221,7 +221,7 @@ struct SomeView: View {
 }
 ```
 
-#### Gedeelde ViewModel (Environment)
+#### Gedeelde ViewModels (Environment)
 
 ```swift
 @main
@@ -269,7 +269,9 @@ private extension SomeView {
 }
 ```
 
-## Services
+## Data laag
+
+### Services
 
 ```swift
 protocol SomeServiceProtocol {
@@ -283,7 +285,7 @@ actor SomeService: SomeServiceProtocol {
 }
 ```
 
-### Netwerkrequests in util laag
+#### Netwerkrequests in util laag
 
 ```swift
 enum HTTPMethod: String { case GET, POST, PUT, DELETE }
