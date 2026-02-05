@@ -8,8 +8,8 @@
 
 ### Dependency chart
 
-<div style="display: flex; justify-content: center">
-    <img src="assets/Dependency-chart.png" alt="Dependency chart" style="width: 300px">
+<div style="display: flex; justify-content: center; width: 100%">
+    <img src="assets/Dependency-chart.png" alt="Dependency chart" style="width: 50%">
 </div>
 
 
