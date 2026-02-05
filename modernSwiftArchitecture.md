@@ -2,15 +2,23 @@
 
 ### High level architectuur
 
-![High level architectuur](https://i.ibb.co/cXpHt9T7/High-level.png)
+<div style="display: flex; justify-content: center">
+    <img src="assets/High-level.png" alt="High level architecture">
+</div>
 
 ### Dependency chart
 
-![Dependency chart](https://i.ibb.co/HTgJDyjv/Dependency-chart.png)
+<div style="display: flex; justify-content: center">
+    <img src="assets/Dependency-chart.png" alt="Dependency chart" style="width: 300px">
+</div>
+
 
 ### Voorbeeld met concrete namen
 
-![Naming convention chart](https://i.ibb.co/0yFDBdp8/i-OS-Architecture.png)
+<div style="display: flex; justify-content: center">
+    <img src="assets/iOS-Architecture.png" alt="Concrete naming example">
+</div>
+
 
 # 2. UI laag
 
