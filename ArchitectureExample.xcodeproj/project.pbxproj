@@ -6,15 +6,8 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		46D461E32F31F39F0043635C /* modernAndroidArchitecture.md in Resources */ = {isa = PBXBuildFile; fileRef = 46D461E22F31F39F0043635C /* modernAndroidArchitecture.md */; };
-		46F74F352F30E4430093890E /* architecture.md in Resources */ = {isa = PBXBuildFile; fileRef = 46F74F342F30E4350093890E /* architecture.md */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXFileReference section */
-		46D461E22F31F39F0043635C /* modernAndroidArchitecture.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = modernAndroidArchitecture.md; sourceTree = "<group>"; };
 		46F74F262F30E35A0093890E /* ArchitectureExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArchitectureExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		46F74F342F30E4350093890E /* architecture.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = architecture.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -41,8 +34,6 @@
 			children = (
 				46F74F282F30E35A0093890E /* ArchitectureExample */,
 				46F74F272F30E35A0093890E /* Products */,
-				46F74F342F30E4350093890E /* architecture.md */,
-				46D461E22F31F39F0043635C /* modernAndroidArchitecture.md */,
 			);
 			sourceTree = "<group>";
 		};
@@ -118,8 +109,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46D461E32F31F39F0043635C /* modernAndroidArchitecture.md in Resources */,
-				46F74F352F30E4430093890E /* architecture.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
