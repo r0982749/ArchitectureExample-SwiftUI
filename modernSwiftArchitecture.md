@@ -111,6 +111,15 @@ struct User {
 }
 ```
 
+### DTO
+
+```swift
+struct UserDTO: Decodable {
+    let firstname: String
+    let lastname: String
+}
+```
+
 ### Mapper
 
 ```swift
@@ -134,15 +143,6 @@ struct UserMapper {
     private func getUserDTOFromJson(_ json: String) throws -> UserDTO {
         return try JSONDecoder().decode(UserDTO.self, from: Data(json.utf8))
     }
-}
-```
-
-### DTO
-
-```swift
-struct UserDTO: Decodable {
-    let firstname: String
-    let lastname: String
 }
 ```
 
