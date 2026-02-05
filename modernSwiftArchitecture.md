@@ -6,14 +6,14 @@
     <img src="assets/High-level.png" alt="High level architecture">
 </div>
 
-### Dependency chart
+### Dependency chart - Eifeltoren model
 
 <div style="display: flex; justify-content: center; width: 100%">
     <img src="assets/Dependency-chart.png" alt="Dependency chart" style="width: 50%">
 </div>
 
 
-### Voorbeeld met concrete namen
+### Voorbeeld met concrete namen - Eifeltoren model
 
 <div style="display: flex; justify-content: center">
     <img src="assets/iOS-Architecture.png" alt="Concrete naming example">
