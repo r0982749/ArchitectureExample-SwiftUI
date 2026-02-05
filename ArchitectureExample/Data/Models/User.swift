@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct User: Decodable {
+struct User {
     let firstname: String
     let lastname: String
+    var fullname: String { "\(firstname) \(lastname)" }
 }
