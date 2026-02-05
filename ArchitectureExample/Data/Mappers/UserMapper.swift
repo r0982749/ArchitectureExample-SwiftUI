@@ -8,11 +8,11 @@
 import Foundation
 
 struct UserMapper {
-    func getDTOFromJson(_ json: String) -> UserDTO? {
+    func getUserFromJson(_ json: String) -> User? {
         do {
-            let user = try getUserFromJson(json)
+            let userDTO = try getUserDTOFromJson(json)
             
-            return map(from: user)
+            return map(from: userDTO)
         }
         catch {
             print("Error parsing JSON: \(error)")
@@ -20,11 +20,11 @@ struct UserMapper {
         }
     }
     
-    func map(from user: User) -> UserDTO {
-        return UserDTO(firstname: user.firstname, lastname: user.lastname)
+    func map(from userDTO: UserDTO) -> User {
+        return User(firstname: userDTO.firstname, lastname: userDTO.lastname)
     }
     
-    private func getUserFromJson(_ json: String) throws -> User {
-        return try JSONDecoder().decode(User.self, from: Data(json.utf8))
+    private func getUserDTOFromJson(_ json: String) throws -> UserDTO {
+        return try JSONDecoder().decode(UserDTO.self, from: Data(json.utf8))
     }
 }
