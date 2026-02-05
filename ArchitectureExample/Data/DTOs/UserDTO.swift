@@ -7,11 +7,7 @@
 
 import Foundation
 
-struct UserDTO {
+struct UserDTO: Decodable {
     let firstname: String
     let lastname: String
-    
-    func getFullname() -> String {
-        return "\(firstname) \(lastname)"
-    }
 }
