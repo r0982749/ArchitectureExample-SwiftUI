@@ -13,7 +13,10 @@ class UserListViewModel {
     
     init() {
         // call to service
-        
+        self.users = [
+            User(firstname: "Testing", lastname: "Tester"),
+            User(firstname: "Tester", lastname: "Test"),
+        ]
     }
 }
 

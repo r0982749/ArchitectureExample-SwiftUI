@@ -11,8 +11,10 @@ struct UserListView: View {
     @State var userListViewModel = UserListViewModel()
     
     var body: some View {
-        ForEach(userListViewModel.users, id: \.self) { user in
-            UserListItemPartialView(user: user)
+        VStack {
+            List(userListViewModel.users, id: \.self) { user in
+                UserListItemPartialView(user: user)
+            }
         }
     }
 }
