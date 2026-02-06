@@ -9,6 +9,13 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        CurrentUserView()
+        TabView {
+            Tab("Home", systemImage: "house") {
+                CurrentUserView()
+            }
+            Tab("Users", systemImage: "list.bullet") {
+                UserListView()
+            }
+        }
     }
 }
