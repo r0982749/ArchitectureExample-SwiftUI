@@ -11,6 +11,6 @@ struct UserListItemPartialView: View {
     let user: User
     
     var body: some View {
-        Text("\(user.fullname)")
+        Text(user.fullname)
     }
 }
