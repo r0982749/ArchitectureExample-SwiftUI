@@ -18,7 +18,13 @@
 
 ## Stap 2: Service laag
 
+1. Protocollen aanmaken voor alle Services
 
+    - Door protocollen te gebruiken kunnen we later bijvoorbeeld offline first services gebruiken zonder de UI laag te moeten aanpassen.
+
+2. "DAO's" omvormen naar Services
+
+    - Ervoor zorgen dat de "DAO's" de best practices volgen door ze om te vormen naar Services die de protocollen implementeren.
 
 
 
