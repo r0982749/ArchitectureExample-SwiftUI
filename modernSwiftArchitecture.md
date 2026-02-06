@@ -1,26 +1,26 @@
-## Architectuur
+## Swift Architecture
 
-### High level architectuur
+### High level architecture
 
 <div style="display: flex; justify-content: center">
     <img src="assets/High-level.png" alt="High level architecture">
 </div>
 
-### Dependency chart - Eifeltoren model
+### Dependency chart - Eiffel Tower model
 
 <div style="display: flex; justify-content: center; width: 100%">
     <img src="assets/Dependency-chart.png" alt="Dependency chart" style="width: 50%">
 </div>
 
 
-### Voorbeeld met concrete namen - Eifeltoren model
+### Concrete naming example - Eiffel Tower model
 
 <div style="display: flex; justify-content: center">
     <img src="assets/iOS-Architecture.png" alt="Concrete naming example">
 </div>
 
 
-# 2. UI laag
+# 2. UI layer
 
 ### ViewModel
 
@@ -39,7 +39,7 @@ struct SomeView: View {
 }
 ```
 
-#### Gedeelde ViewModels (Environment)
+#### Shared ViewModels (Environment)
 
 ```swift
 @main
@@ -87,7 +87,7 @@ private extension SomeView {
 }
 ```
 
-Het is aangeraden om de Views zo veel mogelijk op te splitsen in herbruikbare PartialViews. Hierdoor wordt de UI laag leesbaarder en worden ook de clean code principes toegepast.
+It is recommended to split the Views into reusable PartialViews as much as possible. This makes the UI layer more readable and also applies the clean code principles.
 
 ```swift
 struct SomeListView: View {
@@ -111,7 +111,7 @@ struct SomeListItemPartialView: View {
 }
 ```
 
-## Service laag
+## Service layer
 
 ### Interface
 
@@ -121,7 +121,7 @@ protocol SomeServiceProtocol {
 }
 ```
 
-### Implementatie
+### Implementation
 
 ```swift
 actor SomeService: SomeServiceProtocol {
@@ -131,7 +131,7 @@ actor SomeService: SomeServiceProtocol {
 }
 ```
 
-## Data laag
+## Data layer
 
 ### Model
 
@@ -180,7 +180,7 @@ struct UserMapper {
 
 ## Utils
 
-### Netwerkrequests in util laag
+### Networkrequests in the util layer
 
 ```swift
 enum HTTPMethod: String { case GET, POST, PUT, DELETE }
