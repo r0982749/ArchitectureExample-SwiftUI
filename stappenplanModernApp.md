@@ -43,3 +43,14 @@
 
     - Focussen op het behouden van de funtionaliteit, maar wel de best practices toepassen.
 
+## Stap 4: UI laag
+
+1. Ervoor zorgen dat er overal waar nodig ViewModels gebruikt worden
+    
+    - Zoveel mogelijk de UI te sturen met de ViewModels, en onnodige variabelen schrappen.
+
+2. Views "cleanen"
+
+    - Ongebruikte variabelen / functies verwijderen.
+
+    - Partial Views inzetten om de UI laag leesbaar te maken en duplicate code te vermijden.
