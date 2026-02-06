@@ -87,6 +87,30 @@ private extension SomeView {
 }
 ```
 
+Het is aangeraden om de Views zo veel mogelijk op te splitsen in herbruikbare PartialViews. Hierdoor wordt de UI laag leesbaarder en worden ook de clean code principes toegepast.
+
+```swift
+struct SomeListView: View {
+    @State private var someViewModel = SomeViewModel()
+
+    var body: some View {
+        VStack {
+            List(someViewModel.words, id: \.self) { word in
+                SomeListItemPartialView(word: word)
+            }
+        }
+    }
+}
+
+struct SomeListItemPartialView: View {
+    let word: String 
+
+    var body: some View {
+        Text(word)
+    }
+}
+```
+
 ## Service laag
 
 ### Interface
