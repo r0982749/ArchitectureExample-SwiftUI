@@ -1,6 +1,47 @@
 
 # Stappenplan
 
+
+## Stap 1: Data laag
+
+1. DTO's aanmaken
+
+    - Dit zijn de models die in JSON vorm ontvangen worden van de backend
+
+2. Models herwerken
+
+    - 
+
+3. Mappers aanmaken
+
+    - Om de DTO's om te zetten naar de correcte Models
+
+## Stap 2: Service laag
+
+
+
+
+
+
+
+
+
+
+## Stap 1: Data laag
+
+1. DTO's aanmaken
+
+    - Dit zijn de models die in JSON vorm ontvangen worden van de backend
+
+2. Models aanmaken
+
+    - Bestaan grotendeels al, enkel de 
+
+3. Mappers aanmaken (om DTO's om te zetten naar Models)
+
+
+## Service laag
+
 1. "DAOs" omvormen naar Services
 
     - Impact:
@@ -11,7 +52,9 @@
 
         - Door gebruik te maken van protocol'en wordt de UI laag gescheiden van de data laag, waardoor we bijvoorbeeld gebruik kunnen maken van offline first services.
 
-2. "WebServiceUtils" omvormen
+## Util laag
+
+1. "WebServiceUtils" omvormen
 
     - Impact:
 
@@ -21,7 +64,7 @@
 
         - De web requests worden generiek gemaakt waardoor leesbaarheid stijgt en duplicate code vermeden wordt.
 
-3. "UserDefaultUtils" omvormen
+2. "UserDefaultUtils" omvormen
 
     - Impact:
 
@@ -31,8 +74,6 @@
 
         - Zorgt voor consistentie binnen de utils folder.
 
-4. Models corrigeren (data laag aanmaken)
+## UI laag
 
-5. Mappers en DTO's aanmaken
-
-6. UI omvormen (behalve kalender)
+1. UI omvormen (behalve kalender)
