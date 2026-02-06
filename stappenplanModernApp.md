@@ -6,15 +6,15 @@
 
 1. DTO's aanmaken
 
-    - Dit zijn de models die in JSON vorm ontvangen worden van de backend
+    - Dit zijn de models die in JSON vorm ontvangen worden van de backend.
 
 2. Models herwerken
 
-    - 
+    - Best practices toepassen voor bijvoorbeeld berekenede velden en functies.
 
 3. Mappers aanmaken
 
-    - Om de DTO's om te zetten naar de correcte Models
+    - Om de DTO's om te zetten naar de correcte Models.
 
 ## Stap 2: Service laag
 
