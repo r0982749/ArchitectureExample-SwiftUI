@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct User {
+struct User: Hashable {
     let firstname: String
     let lastname: String
     var fullname: String { "\(firstname) \(lastname)" }
