@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct UserListItemPartialView: View {
-    var user: User
+    let user: User
     
     var body: some View {
         Text("\(user.fullname)")

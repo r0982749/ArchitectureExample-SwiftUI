@@ -12,7 +12,7 @@ struct UserListView: View {
     
     var body: some View {
         ForEach(userListViewModel.users, id: \.self) { user in
-            
+            UserListItemPartialView(user: user)
         }
     }
 }
