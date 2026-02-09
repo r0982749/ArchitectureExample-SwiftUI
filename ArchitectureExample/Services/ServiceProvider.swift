@@ -8,7 +8,7 @@
 import Foundation
 
 enum ServiceProvider {
-    func makeUserService() -> UserServiceProtocol {
+    static func makeUserService() -> UserServiceProtocol {
         UserService()
     }
 }

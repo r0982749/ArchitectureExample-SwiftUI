@@ -9,7 +9,7 @@ import Foundation
 
 actor UserService: UserServiceProtocol {
     func getCurrentUser() async -> User? {
-        return nil
+        return await UserMapper().getUserFromJson("{ \"firstname\": \"Testing\", \"lastname\": \"Tester\" }")
     }
     
     func getUsers() async -> [User] {

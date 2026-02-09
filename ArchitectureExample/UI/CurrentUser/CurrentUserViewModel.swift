@@ -11,8 +11,9 @@ import Foundation
 class CurrentUserViewModel {
     var user: User? = nil
     
-    init() {
-        // To be replaced by a call to the service
-        self.user = UserMapper().getUserFromJson("{ \"firstname\": \"Testing\", \"lastname\": \"Tester\" }")
+    init(userService: UserServiceProtocol = ServiceProvider.makeUserService()) {
+        Task {
+            self.user = await userService.getCurrentUser()
+        }
     }
 }
