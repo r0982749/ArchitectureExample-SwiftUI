@@ -45,9 +45,9 @@
 
 ## Stap 4: UI laag
 
-1. Ervoor zorgen dat er overal waar nodig ViewModels gebruikt worden
+1. Ervoor zorgen dat er overal waar nodig States gebruikt worden
     
-    - Zoveel mogelijk de UI te sturen met de ViewModels, en onnodige variabelen schrappen.
+    - Zoveel mogelijk de UI te sturen met de States, en onnodige variabelen schrappen.
 
 2. Views "cleanen"
 
