@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct UserListView: View {
-    @State var userListViewModel = UserListViewModel()
+    @State var userListState = UserListState()
     
     var body: some View {
         VStack {
-            List(userListViewModel.users, id: \.self) { user in
+            List(userListState.users, id: \.self) { user in
                 UserListItemPartialView(user: user)
             }
         }

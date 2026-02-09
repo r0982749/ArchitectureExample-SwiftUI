@@ -9,12 +9,12 @@ import SwiftUI
 
 @main
 struct ArchitectureExampleApp: App {
-    @State private var currentUserViewModel = CurrentUserViewModel()
+    @State private var currentUserState = CurrentUserState()
     
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(currentUserViewModel)
+                .environment(currentUserState)
         }
     }
 }

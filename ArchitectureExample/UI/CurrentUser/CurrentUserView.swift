@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct CurrentUserView: View {
-    @Environment(CurrentUserViewModel.self) var currentUserViewModel
+    @Environment(CurrentUserState.self) var currentUserState
     
     var body: some View {
-        Text("Hello, \(currentUserViewModel.user?.fullname ?? "Anonymous")")
+        Text("Hello, \(currentUserState.user?.fullname ?? "Anonymous")")
     }
 }
