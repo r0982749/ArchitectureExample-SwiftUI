@@ -22,16 +22,16 @@
 
 # 2. UI layer
 
-### ViewModel
+### State
 
 ```swift
 @Observable
-class SomeViewModel {
+class SomeState {
     var name: String = "John"
 }
 
 struct SomeView: View {
-    @State private var someViewModel = SomeViewModel()
+    @State private var someState = SomeState()
 
     var body: some View {
         //...
@@ -39,17 +39,17 @@ struct SomeView: View {
 }
 ```
 
-#### Shared ViewModels (Environment)
+#### Shared States (Environment)
 
 ```swift
 @main
 struct SomeApp: App {
-    @State private var someViewModel = SomeViewModel()
+    @State private var someState = SomeState()
     
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(someViewModel)
+                .environment(someState)
         }
     }
 }
@@ -61,7 +61,7 @@ struct ContentView: View {
 }
 
 struct SomeView: View {
-    @Environment(SomeViewModel.self) var someViewModel
+    @Environment(SomeState.self) var someState
 
     var body: some View {
         //...
@@ -73,7 +73,7 @@ struct SomeView: View {
 
 ```swift
 struct SomeView: View {
-    @State private var someViewModel = SomeViewModel()
+    @State private var someState = SomeState()
 
     var body: some View {
         //...
@@ -91,11 +91,11 @@ It is recommended to split the Views into reusable PartialViews as much as possi
 
 ```swift
 struct SomeListView: View {
-    @State private var someViewModel = SomeViewModel()
+    @State private var someState = SomeState()
 
     var body: some View {
         VStack {
-            List(someViewModel.words, id: \.self) { word in
+            List(someState.words, id: \.self) { word in
                 SomeListItemPartialView(word: word)
             }
         }
@@ -178,12 +178,32 @@ struct UserMapper {
         }
     }
     
-    func map(from userDTO: UserDTO) -> User {
+    func getUsersFromJson(_ json: String) -> [User] {
+        do {
+            let userDTOs = try getUserDTOsFromJson(json)
+            
+            return userDTOs.map { userDTO in
+                map(from: userDTO)
+            }
+        }
+        catch {
+            print("Error parsing JSON: \(error)")
+            return []
+        }
+    }
+}
+
+extension UserMapper {
+    private func map(from userDTO: UserDTO) -> User {
         return User(firstname: userDTO.firstname, lastname: userDTO.lastname)
     }
     
     private func getUserDTOFromJson(_ json: String) throws -> UserDTO {
         return try JSONDecoder().decode(UserDTO.self, from: Data(json.utf8))
+    }
+    
+    private func getUserDTOsFromJson(_ json: String) throws -> [UserDTO] {
+        return try JSONDecoder().decode([UserDTO].self, from: Data(json.utf8))
     }
 }
 ```
