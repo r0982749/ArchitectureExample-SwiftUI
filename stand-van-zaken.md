@@ -37,7 +37,7 @@ actor TransportService: TransportServiceProtocol {
 
 Om het beste resultaat te bekomen, zullen ook de Util klassen aangepast moeten worden. Zodat ze ook voldoen aan de modern app principes, maar dit is nog niet noodzakelijk en kan achteraf gebeuren.
 
-Door deze aanpassing door te voeren, moeten we waarschijnlijk de datatypes aanpassen van de Services in de ViewModels, maar door het behouden van de functionaliteit moeten er verder geen aanpassingen gemaakt worden aan de UI laag.
+Door deze aanpassing door te voeren, moeten we waarschijnlijk de datatypes aanpassen van de Services in de States, maar door het behouden van de functionaliteit moeten er verder geen aanpassingen gemaakt worden aan de UI laag.
 
 Met deze aanpassing bestaat ook de mogelijkheid om "mock" implementaties aan te maken voor de services (of offline first varianten). Dit is mogelijk gemaakt door het gebruiken van het "protocol" keyword.
 
@@ -84,7 +84,7 @@ Op deze manier kunnen we ervoor zorgen dat deze util klasse enkel gebruikt wordt
 
 ```swift
 struct SomeView: View {
-    @State private var someViewModel = SomeViewModel()
+    @State private var someState = SomeState()
 
     private var calculatedField: Int { ... }
 
@@ -100,7 +100,7 @@ Het is aangeraden om berekende velden en functies te scheiden van de View met be
 
 ```swift
 struct SomeView: View {
-    @State private var someViewModel = SomeViewModel()
+    @State private var someState = SomeState()
 
     var body: some View {
         //...
@@ -114,20 +114,20 @@ private extension SomeView {
 }
 ```
 
-### ViewModel
+### State
 
-Om de View te kunnen sturen met de ViewModel kunnen we gebruik maken van een "@Observable" klasse. Door de klasse observable te maken zorgen we ervoor dat de View wordt geupdate als de ViewModel wijzigd.
+Om de View te kunnen sturen met de State kunnen we gebruik maken van een "@Observable" klasse. Door de klasse observable te maken zorgen we ervoor dat de View wordt geupdate als de State wijzigd.
 
-Hierna kunnen we in de View de "@State" annotatie om de ViewModel te kunnen gebruiken.
+Hierna kunnen we in de View de "@State" annotatie om de State te kunnen gebruiken.
 
 ```swift
 @Observable
-class SomeViewModel {
+class SomeState {
     var name: String = "John"
 }
 
 struct SomeView: View {
-    @State private var someViewModel = SomeViewModel()
+    @State private var someState = SomeState()
 
     var body: some View {
         //...
@@ -135,25 +135,25 @@ struct SomeView: View {
 }
 ```
 
-Voor gedeelde ViewModels, voor bijvoorbeeld de huidige gebruiker op te vragen, kunnen we het environment gebruiken.
+Voor gedeelde States, voor bijvoorbeeld de huidige gebruiker op te vragen, kunnen we het environment gebruiken.
 
-Het is aangeraden om de gedeelde ViewModels zo "hoog" mogelijk toe te voegen aan het environment, bijvoorbeeld in de "@main" app struct.
+Het is aangeraden om de gedeelde States zo "hoog" mogelijk toe te voegen aan het environment, bijvoorbeeld in de "@main" app struct.
 
 ```swift
 @main
 struct SomeApp: App {
-    @State private var someViewModel = SomeViewModel()
+    @State private var someState = SomeState()
     
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(someViewModel)
+                .environment(someState)
         }
     }
 }
 ```
 
-Dit laat toe om dan in de View de ViewModel op te halen uit het environment in plaats van ze door te geven doorheen onze app. Het is aangeraden om "ContentView" te gebruiken om de entry point van de app te beperken in complexiteit ("@main" struct), en dus al de Views pas op te roepen in de "ContentView" struct.
+Dit laat toe om dan in de View de State op te halen uit het environment in plaats van ze door te geven doorheen onze app. Het is aangeraden om "ContentView" te gebruiken om de entry point van de app te beperken in complexiteit ("@main" struct), en dus al de Views pas op te roepen in de "ContentView" struct.
 
 ```swift
 struct ContentView: View {
@@ -163,7 +163,7 @@ struct ContentView: View {
 }
 
 struct SomeView: View {
-    @Environment(SomeViewModel.self) var someViewModel
+    @Environment(SomeState.self) var someState
 
     var body: some View {
         //...
@@ -171,4 +171,4 @@ struct SomeView: View {
 }
 ```
 
-Op deze manier kan je een specifieke ViewModel ophalen uit het environment op basis van zijn type (in dit geval "SomeViewModel").
+Op deze manier kan je een specifieke State ophalen uit het environment op basis van zijn type (in dit geval "SomeState").

@@ -119,11 +119,11 @@ extension URLSession {
 }
 ```
 
-### ViewModel layer
+### State layer
 
 ```swift
 @Observable
-class SomeViewModel {
+class SomeState {
     @Published var name: String = "John"
 }
 ```
@@ -132,7 +132,7 @@ class SomeViewModel {
 
 ```swift
 struct SomeView: View {
-    @State private var someViewModel = SomeViewModel()
+    @State private var someState = SomeState()
 
     var body: some View {
         //...
@@ -159,17 +159,17 @@ This layer can be used to store the formatters and extensions, basically anythin
 
 ### Environment Injection
 
-Use this method if the ViewModel is Global or Shared between multiple views. It is advised to add ViewModel to the environment as high as possible in the app.
+Use this method if the State is Global or Shared between multiple views. It is advised to add State to the environment as high as possible in the app.
 
 ```swift
 @main
 struct SomeApp: App {
-    @State private var someViewModel = SomeViewModel()
+    @State private var someState = SomeState()
     
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(someViewModel)
+                .environment(someState)
         }
     }
 }
@@ -181,7 +181,7 @@ struct ContentView: View {
 }
 
 struct SomeView: View {
-    @Environment(SomeViewModel.self) var someViewModel
+    @Environment(SomeState.self) var someState
 
     var body: some View {
         //...
@@ -189,7 +189,7 @@ struct SomeView: View {
 }
 ```
 
-### Service to ViewModel DI
+### Service to State DI
 
 ```swift
 protocol APIClientProtocol {
@@ -207,7 +207,7 @@ actor APIClient: APIClientProtocol {
 
 ```swift
 @Observable
-class UserListViewModel {
+class UserListState {
     private let apiClient: APIClientProtocol
     var users = [User]()
     var isLoading = false
@@ -229,7 +229,7 @@ class UserListViewModel {
 ```
 
 ```swift
-@State var viewModel = UserListViewModel(apiClient: APIClient())
+@State var state = UserListState(apiClient: APIClient())
 ```
 
 #### For testing purposes
@@ -241,7 +241,7 @@ class MockAPIClient: APIClientProtocol {
     }
 }
 
-let testViewModel = UserListViewModel(apiClient: MockAPIClient())
+let testState = UserListState(apiClient: MockAPIClient())
 ```
 
 ## Keywords
@@ -283,8 +283,8 @@ A protocol behaves like the mix between an "interface" and an "abstract class" i
 
 ## Annotations
 
-### @State (modern way to use ViewModels in Views)
-The "@State" annotation is used for local variables within a view, when the variable is changed the view updates. The ViewModel is destoyed when leaving the View, theoretically saving memory.
+### @State (modern way to use States in Views)
+The "@State" annotation is used for local variables within a view, when the variable is changed the view updates. The State is destoyed when leaving the View, theoretically saving memory.
 
 ```swift
 @MainActor
@@ -304,7 +304,7 @@ final class AppCoordinator {
 ```
 
 ### @StateObject & @Published (Old pattern, do not use)
-A variable with the "@StateObject" annotation updates the view when a property of the object that is annotated with "@Published" is changed. The ViewModel is not destroyed and recreated everytime the View is changed.
+A variable with the "@StateObject" annotation updates the view when a property of the object that is annotated with "@Published" is changed. The State is not destroyed and recreated everytime the View is changed.
 The class itself must be an "ObservableObject"
 
 ```swift
