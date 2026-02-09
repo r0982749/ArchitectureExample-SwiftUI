@@ -131,6 +131,16 @@ actor SomeService: SomeServiceProtocol {
 }
 ```
 
+### Provider
+
+```swift
+enum ServiceProvider {
+    static func makeSomeService() -> SomeServiceProtocol {
+        SomeService()
+    }
+}
+```
+
 ## Data layer
 
 ### Model
