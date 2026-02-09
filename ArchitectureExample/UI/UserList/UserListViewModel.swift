@@ -11,7 +11,10 @@ import Foundation
 class UserListViewModel {
     var users: [User] = []
     
-    init() {
+    init(userService: UserServiceProtocol = ServiceProvider.makeUserService()) {
+        
+        
+        
         // call to service
         self.users = [
             User(firstname: "Testing", lastname: "Tester"),

@@ -13,6 +13,6 @@ actor UserService: UserServiceProtocol {
     }
     
     func getUsers() async -> [User] {
-        return []
+        return await UserMapper().getUsersFromJson("[ { \"firstname\": \"Testing\", \"lastname\": \"Tester\" }, { \"firstname\": \"Tester\", \"lastname\": \"Test\" } ]")
     }
 }
