@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+actor UserService: UserServiceProtocol {
+    func getCurrentUser() async -> User? {
+        return nil
+    }
+    
+    func getUsers() async -> [User] {
+        return []
+    }
+}

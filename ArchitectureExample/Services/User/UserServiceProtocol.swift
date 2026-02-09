@@ -8,5 +8,7 @@
 import Foundation
 
 protocol UserServiceProtocol {
+    func getCurrentUser() async -> User?
     
+    func getUsers() async -> [User]
 }
