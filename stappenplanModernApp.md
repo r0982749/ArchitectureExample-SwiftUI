@@ -52,5 +52,7 @@
 2. Views "cleanen"
 
     - Ongebruikte variabelen / functies verwijderen.
+    
+    - Functies verplaatsen naar extensions.
 
     - Partial Views inzetten om de UI laag leesbaar te maken en duplicate code te vermijden.
