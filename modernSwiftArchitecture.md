@@ -69,6 +69,14 @@ struct SomeView: View {
 }
 ```
 
+Use the following naming covention if your shared state fits any of the following criteria:
+
+- SomeManager -> Used to perform business logic 
+
+- SomeStore -> Used to store objects
+
+- SomeSettings -> Used to store preferences / settings
+
 ### View
 
 ```swift
