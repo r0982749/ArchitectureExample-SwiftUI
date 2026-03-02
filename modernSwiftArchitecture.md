@@ -173,8 +173,8 @@ struct UserDTO: Decodable {
 ### Mapper
 
 ```swift
-struct UserMapper {
-    func getUserFromJson(_ json: Data) -> User? {
+enum UserMapper {
+    static func getUserFromJson(_ json: Data) -> User? {
         do {
             let userDTO = try getUserDTOFromJson(json)
             
@@ -186,7 +186,7 @@ struct UserMapper {
         }
     }
     
-    func getUsersFromJson(_ json: Data) -> [User] {
+    static func getUsersFromJson(_ json: Data) -> [User] {
         do {
             let userDTOs = try getUserDTOsFromJson(json)
             
@@ -202,15 +202,15 @@ struct UserMapper {
 }
 
 extension UserMapper {
-    private func map(from userDTO: UserDTO) -> User {
+    private static func map(from userDTO: UserDTO) -> User {
         return User(firstname: userDTO.firstname, lastname: userDTO.lastname)
     }
     
-    private func getUserDTOFromJson(_ json: Data) throws -> UserDTO {
+    private static func getUserDTOFromJson(_ json: Data) throws -> UserDTO {
         return try JSONDecoder().decode(UserDTO.self, from: json)
     }
     
-    private func getUserDTOsFromJson(_ json: Data) throws -> [UserDTO] {
+    private static func getUserDTOsFromJson(_ json: Data) throws -> [UserDTO] {
         return try JSONDecoder().decode([UserDTO].self, from: json)
     }
 }
