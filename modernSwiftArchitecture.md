@@ -174,7 +174,7 @@ struct UserDTO: Decodable {
 
 ```swift
 struct UserMapper {
-    func getUserFromJson(_ json: String) -> User? {
+    func getUserFromJson(_ json: Data) -> User? {
         do {
             let userDTO = try getUserDTOFromJson(json)
             
@@ -186,7 +186,7 @@ struct UserMapper {
         }
     }
     
-    func getUsersFromJson(_ json: String) -> [User] {
+    func getUsersFromJson(_ json: Data) -> [User] {
         do {
             let userDTOs = try getUserDTOsFromJson(json)
             
@@ -206,12 +206,12 @@ extension UserMapper {
         return User(firstname: userDTO.firstname, lastname: userDTO.lastname)
     }
     
-    private func getUserDTOFromJson(_ json: String) throws -> UserDTO {
-        return try JSONDecoder().decode(UserDTO.self, from: Data(json.utf8))
+    private func getUserDTOFromJson(_ json: Data) throws -> UserDTO {
+        return try JSONDecoder().decode(UserDTO.self, from: json)
     }
     
-    private func getUserDTOsFromJson(_ json: String) throws -> [UserDTO] {
-        return try JSONDecoder().decode([UserDTO].self, from: Data(json.utf8))
+    private func getUserDTOsFromJson(_ json: Data) throws -> [UserDTO] {
+        return try JSONDecoder().decode([UserDTO].self, from: json)
     }
 }
 ```
@@ -224,13 +224,13 @@ extension UserMapper {
 enum HTTPMethod: String { case GET, POST, PUT, DELETE }
 
 enum NetworkRequester {
-    static func request<T: Decodable>(
+    static func request(
         url: URL,
         method: HTTPMethod = .GET,
         headers: [String: String] = [:],
         body: Data? = nil,
         jwt: String? = nil
-    ) async throws -> T {
+    ) async throws -> Data? {
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
         if let body = body { request.httpBody = body }
@@ -239,8 +239,17 @@ enum NetworkRequester {
         }
         headers.forEach { request.addValue($1, forHTTPHeaderField: $0) }
         
-        let (data, _) = try await URLSession.shared.data(for: request)
-        return try JSONDecoder().decode(T.self, from: data)
+        let (data, response) = try await URLSession.shared.data(for: request)
+        
+        guard let httpResponse = response as? HTTPURLResponse else {
+            return nil
+        }
+        
+        if (200..<300).contains(httpResponse.statusCode) {
+            return data
+        } else {
+            return nil
+        }
     }
 }
 ```
