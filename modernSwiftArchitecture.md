@@ -201,16 +201,16 @@ enum UserMapper {
     }
 }
 
-extension UserMapper {
-    private static func map(from userDTO: UserDTO) -> User {
+private extension UserMapper {
+    static func map(from userDTO: UserDTO) -> User {
         return User(firstname: userDTO.firstname, lastname: userDTO.lastname)
     }
     
-    private static func getUserDTOFromJson(_ json: Data) throws -> UserDTO {
+    static func getUserDTOFromJson(_ json: Data) throws -> UserDTO {
         return try JSONDecoder().decode(UserDTO.self, from: json)
     }
     
-    private static func getUserDTOsFromJson(_ json: Data) throws -> [UserDTO] {
+    static func getUserDTOsFromJson(_ json: Data) throws -> [UserDTO] {
         return try JSONDecoder().decode([UserDTO].self, from: json)
     }
 }
