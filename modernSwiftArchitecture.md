@@ -20,7 +20,7 @@
 </div>
 
 
-# 2. UI layer
+# UI layer
 
 ### State
 
